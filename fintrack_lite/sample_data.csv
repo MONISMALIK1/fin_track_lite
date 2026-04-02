@@ -1,0 +1,85 @@
+username,amount,type,category,date,notes
+admin,5200.00,income,Salary,2024-01-05,Monthly salary - January
+admin,1200.00,income,Freelance,2024-01-12,Logo design project
+admin,1450.00,expense,Rent,2024-01-01,Apartment rent
+admin,320.00,expense,Groceries,2024-01-08,Weekly groceries
+admin,85.50,expense,Utilities,2024-01-15,Electric bill
+admin,45.00,expense,Subscriptions,2024-01-10,Spotify + Netflix
+admin,60.00,expense,Transport,2024-01-14,Uber rides
+admin,150.00,expense,Dining,2024-01-20,Restaurant dinner
+admin,5200.00,income,Salary,2024-02-05,Monthly salary - February
+admin,800.00,income,Freelance,2024-02-18,Website mockup
+admin,1450.00,expense,Rent,2024-02-01,Apartment rent
+admin,295.00,expense,Groceries,2024-02-07,Weekly groceries
+admin,92.00,expense,Utilities,2024-02-12,Electric + water
+admin,200.00,expense,Shopping,2024-02-14,Valentine gift
+admin,45.00,expense,Subscriptions,2024-02-10,Spotify + Netflix
+admin,75.00,expense,Transport,2024-02-22,Fuel + parking
+admin,5200.00,income,Salary,2024-03-05,Monthly salary - March
+admin,2000.00,income,Bonus,2024-03-28,Q1 performance bonus
+admin,1450.00,expense,Rent,2024-03-01,Apartment rent
+admin,310.00,expense,Groceries,2024-03-06,Weekly groceries
+admin,78.00,expense,Utilities,2024-03-14,Electric bill
+admin,350.00,expense,Shopping,2024-03-17,New headphones
+admin,130.00,expense,Dining,2024-03-22,Birthday dinner
+admin,45.00,expense,Subscriptions,2024-03-10,Spotify + Netflix
+admin,5200.00,income,Salary,2024-04-05,Monthly salary - April
+admin,600.00,income,Freelance,2024-04-15,App icon set
+admin,1450.00,expense,Rent,2024-04-01,Apartment rent
+admin,340.00,expense,Groceries,2024-04-10,Weekly groceries
+admin,105.00,expense,Utilities,2024-04-13,Electric + internet
+admin,250.00,expense,Healthcare,2024-04-20,Dentist visit
+admin,90.00,expense,Transport,2024-04-25,Uber + metro
+admin,45.00,expense,Subscriptions,2024-04-10,Spotify + Netflix
+analyst,4500.00,income,Salary,2024-01-05,Monthly salary - January
+analyst,300.00,income,Dividends,2024-01-20,Stock dividends Q4
+analyst,1100.00,expense,Rent,2024-01-01,Studio apartment rent
+analyst,260.00,expense,Groceries,2024-01-09,Bi-weekly groceries
+analyst,55.00,expense,Subscriptions,2024-01-10,Cloud storage + Spotify
+analyst,180.00,expense,Dining,2024-01-18,Team lunch x2
+analyst,40.00,expense,Transport,2024-01-22,Bus pass
+analyst,4500.00,income,Salary,2024-02-05,Monthly salary - February
+analyst,150.00,income,Freelance,2024-02-12,Consulting call
+analyst,1100.00,expense,Rent,2024-02-01,Studio apartment rent
+analyst,245.00,expense,Groceries,2024-02-08,Bi-weekly groceries
+analyst,55.00,expense,Subscriptions,2024-02-10,Cloud storage + Spotify
+analyst,500.00,expense,Shopping,2024-02-16,Winter jacket
+analyst,120.00,expense,Utilities,2024-02-18,Heating bill
+analyst,4500.00,income,Salary,2024-03-05,Monthly salary - March
+analyst,1500.00,income,Bonus,2024-03-30,Q1 bonus
+analyst,1100.00,expense,Rent,2024-03-01,Studio apartment rent
+analyst,280.00,expense,Groceries,2024-03-07,Bi-weekly groceries
+analyst,55.00,expense,Subscriptions,2024-03-10,Cloud storage + Spotify
+analyst,200.00,expense,Healthcare,2024-03-15,Annual checkup
+analyst,95.00,expense,Utilities,2024-03-20,Electric bill
+analyst,4500.00,income,Salary,2024-04-05,Monthly salary - April
+analyst,200.00,income,Dividends,2024-04-18,Stock dividends Q1
+analyst,1100.00,expense,Rent,2024-04-01,Studio apartment rent
+analyst,270.00,expense,Groceries,2024-04-09,Bi-weekly groceries
+analyst,55.00,expense,Subscriptions,2024-04-10,Cloud storage + Spotify
+analyst,350.00,expense,Travel,2024-04-22,Weekend trip bus + hotel
+analyst,65.00,expense,Dining,2024-04-26,Coffee shop + lunch
+viewer,3200.00,income,Salary,2024-01-05,Monthly salary - January
+viewer,1000.00,expense,Rent,2024-01-01,Room rent
+viewer,200.00,expense,Groceries,2024-01-10,Weekly groceries
+viewer,30.00,expense,Subscriptions,2024-01-10,Netflix
+viewer,80.00,expense,Dining,2024-01-15,Takeout orders
+viewer,25.00,expense,Transport,2024-01-20,Bus fare
+viewer,3200.00,income,Salary,2024-02-05,Monthly salary - February
+viewer,500.00,income,Gift,2024-02-14,Birthday gift money
+viewer,1000.00,expense,Rent,2024-02-01,Room rent
+viewer,210.00,expense,Groceries,2024-02-09,Weekly groceries
+viewer,30.00,expense,Subscriptions,2024-02-10,Netflix
+viewer,150.00,expense,Shopping,2024-02-20,New shoes
+viewer,3200.00,income,Salary,2024-03-05,Monthly salary - March
+viewer,1000.00,expense,Rent,2024-03-01,Room rent
+viewer,190.00,expense,Groceries,2024-03-08,Weekly groceries
+viewer,30.00,expense,Subscriptions,2024-03-10,Netflix
+viewer,100.00,expense,Healthcare,2024-03-18,Pharmacy
+viewer,45.00,expense,Transport,2024-03-25,Uber rides
+viewer,3200.00,income,Salary,2024-04-05,Monthly salary - April
+viewer,1000.00,expense,Rent,2024-04-01,Room rent
+viewer,220.00,expense,Groceries,2024-04-11,Weekly groceries
+viewer,30.00,expense,Subscriptions,2024-04-10,Netflix
+viewer,60.00,expense,Dining,2024-04-19,Pizza night
+viewer,75.00,expense,Utilities,2024-04-22,Phone bill
