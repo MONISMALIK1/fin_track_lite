@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "fintrack-lite-frontend",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
