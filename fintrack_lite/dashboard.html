@@ -1414,7 +1414,7 @@
 
   <script>
     // ── Config & State ──────────────────────────────────────────────────
-    const API = 'http://localhost:8000';
+    const API_URL = "https://fintracklite-production.up.railway.app";
     let token = localStorage.getItem('ft_token');
     let currentUser = null; // { username, role }
 
@@ -1426,7 +1426,7 @@
     async function api(path, opts = {}) {
       const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
       if (token) headers['Authorization'] = `Bearer ${token}`;
-      const res = await fetch(`${API}${path}`, { ...opts, headers });
+      const res = await fetch(`${API_URL}${path}`, { ...opts, headers });
       if (res.status === 204) return null;
       const data = await res.json();
       if (!res.ok) throw { status: res.status, detail: data.detail || 'Request failed' };
@@ -1668,7 +1668,7 @@
 
       try {
         toast('Preparing download...');
-        const res = await fetch(`${API}/export-csv?${params.toString()}`, {
+        const res = await fetch(`${API_URL}/export-csv?${params.toString()}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -1797,7 +1797,7 @@
 
     function connectLogStream() {
       disconnectLogStream();
-      const url = `${API}/logs/stream?token=${encodeURIComponent(token)}`;
+      const url = `${API_URL}/logs/stream?token=${encodeURIComponent(token)}`;
       logEventSource = new EventSource(url);
 
       logEventSource.onopen = () => {
@@ -1883,7 +1883,7 @@
 
       toast(`Uploading ${file.name}...`);
       try {
-        const res = await fetch(`${API}/upload-csv`, {
+        const res = await fetch(`${API_URL}/upload-csv`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
           body: formData,
