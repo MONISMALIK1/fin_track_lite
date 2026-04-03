@@ -45,6 +45,39 @@ app.add_middleware(
 )
 
 
+@app.get("/seed", tags=["Utility"])
+def seed_db():
+    """Seed users into the database if they don't exist."""
+    from database import Session, create_tables
+    from models import User, Role
+    from auth import hash_password
+
+    create_tables()
+    db = Session()
+
+    users_data = [
+        {"username": "admin",   "password": "admin123",   "role": Role.admin},
+        {"username": "analyst", "password": "analyst123", "role": Role.analyst},
+        {"username": "viewer",  "password": "viewer123",  "role": Role.viewer},
+    ]
+
+    for u in users_data:
+        existing = db.query(User).filter(User.username == u["username"]).first()
+        if not existing:
+            user = User(
+                username=u["username"],
+                hashed_password=hash_password(u["password"]),
+                role=u["role"]
+            )
+            db.add(user)
+
+    db.commit()
+    db.close()
+
+    return {"message": "Users seeded successfully"}
+
+
+
 # ── Auth ───────────────────────────────────────────────────────────────────────
 
 @app.post("/login", response_model=TokenResponse, tags=["Auth"])
@@ -371,36 +404,3 @@ async def upload_csv(
     _broadcast_log("info", summary_msg, {"created": created, "skipped": skipped, "errors": errors})
 
     return {"created": created, "skipped": skipped, "errors": errors, "filename": file.filename}
-
-
-@app.get("/seed", tags=["Utility"])
-def seed_db():
-    """Seed users into the database if they don't exist."""
-    from database import Session, create_tables
-    from models import User, Role
-    from auth import hash_password
-
-    create_tables()
-    db = Session()
-
-    users_data = [
-        {"username": "admin",   "password": "admin123",   "role": Role.admin},
-        {"username": "analyst", "password": "analyst123", "role": Role.analyst},
-        {"username": "viewer",  "password": "viewer123",  "role": Role.viewer},
-    ]
-
-    for u in users_data:
-        existing = db.query(User).filter(User.username == u["username"]).first()
-        if not existing:
-            user = User(
-                username=u["username"],
-                hashed_password=hash_password(u["password"]),
-                role=u["role"]
-            )
-            db.add(user)
-
-    db.commit()
-    db.close()
-
-    return {"message": "Users seeded successfully"}
-
