@@ -1455,10 +1455,17 @@
         card.classList.add('loading');
         $('#loginError').textContent = '';
         try {
-          const data = await api('/login', {
-            method: 'POST',
-            body: JSON.stringify({ username, password }),
+          const res = await fetch("https://fintracklite-production.up.railway.app/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
           });
+
+          const data = await res.json();
+
+          if (!res.ok) throw data;
           token = data.access_token;
           localStorage.setItem('ft_token', token);
           enterApp();
