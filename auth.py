@@ -33,13 +33,13 @@ def create_token(user_id: int, username: str, role: str) -> str:
         "sub": str(user_id),
         "username": username,
         "role": role,
-        "exp": datetime.now(timezone.utc) + timedelta(minutes=config.TOKEN_EXPIRE_MINUTES),
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=config.settings.TOKEN_EXPIRE_MINUTES),
     }
-    return jwt.encode(payload, config.SECRET_KEY, algorithm=config.ALGORITHM)
+    return jwt.encode(payload, config.settings.SECRET_KEY, algorithm=config.settings.ALGORITHM)
 
 def decode_token(token: str) -> Optional[dict]:
     try:
-        return jwt.decode(token, config.SECRET_KEY, algorithms=[config.ALGORITHM])
+        return jwt.decode(token, config.settings.SECRET_KEY, algorithms=[config.settings.ALGORITHM])
     except JWTError:
         return None
 
