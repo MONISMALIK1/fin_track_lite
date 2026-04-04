@@ -1,4 +1,4 @@
-fastapi
+fastapi\npython-multipart
 uvicorn[standard]
 sqlalchemy
 pydantic[email]
