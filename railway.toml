@@ -1,5 +1,5 @@
 [build]
-builder = "railpack"
+builder = "NIXPACKS"
 
 [deploy]
-startCommand = "node index.js"
+startCommand = "uvicorn fintrack_lite.main:app --host 0.0.0.0 --port 3000"
