@@ -157,8 +157,12 @@ class EntryService:
 async def ask_ollama(context: str, question: str) -> str:
     """
     Send financial context + user question to a local Ollama model.
+    Returns a mock response when Ollama is disabled via OLLAMA_ENABLED=false.
     Raises RuntimeError when Ollama is unreachable.
     """
+    if not config.settings.OLLAMA_ENABLED:
+        return f"[MOCK RESPONSE] Based on your financial data: {question[:50]}... (Ollama disabled in production)"
+
     system = (
         "You are a helpful personal finance assistant. "
         "Answer concisely based only on the data provided."
@@ -168,14 +172,14 @@ async def ask_ollama(context: str, question: str) -> str:
     try:
         async with httpx.AsyncClient(timeout=60.0) as client:
             resp = await client.post(
-                f"{config.OLLAMA_URL}/api/generate",
-                json={"model": config.OLLAMA_MODEL, "prompt": prompt, "system": system, "stream": False},
+                f"{config.settings.OLLAMA_URL}/api/generate",
+                json={"model": config.settings.OLLAMA_MODEL, "prompt": prompt, "system": system, "stream": False},
             )
             resp.raise_for_status()
             return resp.json()["response"].strip()
 
     except httpx.ConnectError:
         raise RuntimeError(
-            f"Ollama is not running at {config.OLLAMA_URL}. "
-            f"Start it with: ollama serve && ollama pull {config.OLLAMA_MODEL}"
+            f"Ollama is not running at {config.settings.OLLAMA_URL}. "
+            f"Start it with: ollama serve && ollama pull {config.settings.OLLAMA_MODEL}"
         )
