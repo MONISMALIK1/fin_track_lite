@@ -36,12 +36,23 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="FinTrack Lite", version="1.0", lifespan=lifespan)
 
-
+app.add_middleware(
+    CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/health")
+def health():
+    return {"status": "healthy", "version": "1.0.0"}
+
+
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "fin_track_lite is running"}
 
 
 @app.get("/seed", tags=["Utility"])
@@ -176,7 +187,7 @@ def export_entries_csv(
             output.truncate(0)
             writer.writerow([
                 entry.id,
-                entry.user_id, # Can also be username if available, but entry output has user_id
+                entry.user_id,
                 entry.date,
                 entry.type.value,
                 entry.category,
