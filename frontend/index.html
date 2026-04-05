@@ -1463,7 +1463,7 @@
         card.classList.add('loading');
         $('#loginError').textContent = '';
         try {
-          const res = await fetch("https://fintracklite-production.up.railway.app/login", {
+          const res = await fetch(`${API_URL}/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
