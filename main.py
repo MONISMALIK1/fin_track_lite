@@ -30,7 +30,30 @@ from services import EntryService, ask_ollama
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    from database import Session
+    
+    # Create all tables
     create_tables()
+    
+    # Auto-seed users if database is empty
+    db = Session()
+    existing_users = db.query(User).count()
+    if existing_users == 0:
+        users_data = [
+            {"username": "admin",   "password": "admin123",   "role": Role.admin},
+            {"username": "analyst", "password": "analyst123", "role": Role.analyst},
+            {"username": "viewer",  "password": "viewer123",  "role": Role.viewer},
+        ]
+        for u in users_data:
+            user = User(
+                username=u["username"],
+                hashed_password=hash_password(u["password"]),
+                role=u["role"]
+            )
+            db.add(user)
+        db.commit()
+    db.close()
+    
     yield
 
 
