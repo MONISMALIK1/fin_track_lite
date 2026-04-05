@@ -1414,7 +1414,42 @@
 
   <script>
     // ── Config & State ──────────────────────────────────────────────────
-    const API_URL = "https://fintracklite-production.up.railway.app";
+    // Smart API URL detection for development and production
+    const API_URL = (() => {
+      // 1. Check for explicit environment variable
+      if (window.API_URL) return window.API_URL;
+      
+      // 2. Check for localStorage override (useful for testing)
+      const stored = localStorage.getItem('API_URL');
+      if (stored) return stored;
+      
+      const hostname = window.location.hostname;
+      const port = window.location.port;
+      
+      // 3. Local development: localhost:3000 → localhost:8000
+      if ((hostname === 'localhost' || hostname === '127.0.0.1') && port === '3000') {
+        return 'http://localhost:8000';
+      }
+      
+      // 4. Local development alternative: localhost:5173 (Vite) → localhost:8000
+      if ((hostname === 'localhost' || hostname === '127.0.0.1') && port === '5173') {
+        return 'http://localhost:8000';
+      }
+      
+      // 5. Vercel/Netlify frontend with Railway backend
+      if (hostname.includes('vercel.app') || hostname.includes('netlify.app')) {
+        return 'https://fintracklite-production.up.railway.app';
+      }
+      
+      // 6. Railway production: same origin
+      if (hostname.includes('railway.app')) {
+        return '';
+      }
+      
+      // 7. Custom domains: assume same origin
+      return '';
+    })();
+    
     let token = localStorage.getItem('ft_token');
     let currentUser = null; // { username, role }
 

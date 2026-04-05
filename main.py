@@ -7,10 +7,11 @@ import json
 from contextlib import asynccontextmanager
 from datetime import date, datetime, timezone
 from typing import Optional, List
+import os
 
 from fastapi import FastAPI, Depends, HTTPException, Query, UploadFile, File, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from sqlalchemy.orm import Session
 
 import config
@@ -87,6 +88,10 @@ async def health_check():
 
 @app.get("/")
 def root():
+    # Serve dashboard.html from the root directory
+    dashboard_path = os.path.join(os.path.dirname(__file__), "dashboard.html")
+    if os.path.exists(dashboard_path):
+        return FileResponse(dashboard_path, media_type="text/html")
     return {"status": "ok", "message": "fin_track_lite is running"}
 
 
