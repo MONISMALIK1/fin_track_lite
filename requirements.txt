@@ -7,9 +7,4 @@ passlib[bcrypt]
 python-jose[cryptography]
 httpx
 pytest
-<<<<<<< HEAD
-psycopg2-binary==2.9.9
-
-=======
 psycopg2-binary
->>>>>>> f7065982394708a60ed823f182028902031bb192
