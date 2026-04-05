@@ -2,10 +2,16 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlalchemy.pool import NullPool
 
 import config
 
-engine = create_engine(config.DATABASE_URL, connect_args={"check_same_thread": False})
+# Use NullPool for serverless/cloud deployments to avoid connection leaks
+engine = create_engine(
+    config.settings.DATABASE_URL,
+    connect_args={"check_same_thread": False} if "sqlite" in config.settings.DATABASE_URL else {},
+    poolclass=NullPool if "postgresql" in config.settings.DATABASE_URL else None,
+)
 Session = sessionmaker(bind=engine)
 
 

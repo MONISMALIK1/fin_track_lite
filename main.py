@@ -46,8 +46,13 @@ app.add_middleware(
 
 
 @app.get("/health")
-def health():
-    return {"status": "healthy", "version": "1.0.0"}
+async def health_check():
+    return {
+        "status": "healthy",
+        "version": "1.0.0",
+        "environment": config.settings.ENVIRONMENT,
+        "database": "connected" if config.settings.DATABASE_URL else "not configured",
+    }
 
 
 @app.get("/")
@@ -266,7 +271,7 @@ async def ask_ai(
         answer = await ask_ollama(context, body.question)
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=str(e))
-    return AIResponse(answer=answer, model=config.OLLAMA_MODEL)
+    return AIResponse(answer=answer, model=config.settings.OLLAMA_MODEL)
 
 
 # ── Live Log (SSE) ─────────────────────────────────────────────────────────────
