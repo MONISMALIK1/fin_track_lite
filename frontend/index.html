@@ -1414,7 +1414,15 @@
 
   <script>
     // ── Config & State ──────────────────────────────────────────────────
-const API_URL = "/";
+    // Detect API URL: use environment variable or infer from location
+    const API_URL = window.API_URL || (() => {
+      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      if (isDev && window.location.port === '3000') {
+        return 'http://localhost:8000'; // Dev: frontend on 3000, backend on 8000
+      }
+      return ''; // Production: same origin (frontend and backend served from same domain)
+    })();
+    
     let token = localStorage.getItem('ft_token');
     let currentUser = null; // { username, role }
 
